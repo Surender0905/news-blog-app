@@ -81,6 +81,25 @@
 
     background-color: #111214;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+    cursor: pointer;
+}
+
+.user img {
+    width: 7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user p {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 1.5rem;
+    color: #ddd;
 }
 
 .categories {
@@ -88,14 +107,58 @@
     height: calc(80% - 2rem);
     background-color: #111214;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 2rem;
 }
 
+.nav-heading {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(1.5rem, 2.5cqi, 3rem);
+    color: #ddd;
+    letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
+}
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    overflow-y: scroll;
+}
+
+.nav-links::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.nav-links::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 1rem;
+}
+
+.nav-links::-webkit-scrollbar-track {
+    background-color: #111214;
+}
+
+.nav-link {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #ddd;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    display: flex;
+    align-items: center;
+}
 .news-section {
     width: clamp(30rem, 43cqi, 40%);
     height: 100%;
     border-radius: 1rem;
 }
 
+.nav-link i {
+    font-size: 1.7rem;
+    margin-left: 1rem;
+}
 .headline {
     width: 100%;
     height: calc(50% - 2rem);

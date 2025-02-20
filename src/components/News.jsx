@@ -1,6 +1,7 @@
 import React from "react";
 import Weather from "./Weather";
 import Calender from "./Calender";
+import userImg from "../assets/profile-pic.png";
 import "./News.css";
 
 const News = () => {
@@ -19,8 +20,47 @@ const News = () => {
             </header>
             <div className="news-content">
                 <div className="navbar">
-                    <div className="user">user</div>
-                    <div className="categories">categories</div>
+                    <div className="user">
+                        <img src={userImg} alt="profile pic" />
+                        <p>Surender&#39;s Blog</p>
+                    </div>
+                    <div className="categories">
+                        <h1 className="nav-heading">Categories</h1>
+                        <div className="nav-links">
+                            <a href="#" className="nav-link">
+                                General
+                            </a>
+                            <a href="#" className="nav-link">
+                                World
+                            </a>
+                            <a href="#" className="nav-link">
+                                Business
+                            </a>
+                            <a href="#" className="nav-link">
+                                Sports
+                            </a>
+                            <a href="#" className="nav-link">
+                                Health
+                            </a>
+                            <a href="#" className="nav-link">
+                                Science
+                            </a>
+                            <a href="#" className="nav-link">
+                                Technology
+                            </a>
+                            <a href="#" className="nav-link">
+                                Entertainment
+                            </a>
+
+                            <a href="#" className="nav-link">
+                                Nation
+                            </a>
+                            <a href="#" className="nav-link">
+                                Bookmarks{" "}
+                                <i className="fa-regular fa-bookmark"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 {/* News Section */}
                 <div className="news-section">
