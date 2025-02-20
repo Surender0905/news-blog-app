@@ -165,6 +165,34 @@
     background-color: #111214;
     border-radius: 1rem;
     margin-bottom: 2rem;
+    position: relative;
+}
+.headline-title {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1rem 4rem 1rem 1rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(1.5rem, 1.8cqi, 3rem);
+    letter-spacing: 0.1rem;
+    color: #ddd;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.bookmark {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+.headline img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    opacity: 0.4;
 }
 
 .news-grid {
@@ -172,8 +200,59 @@
     height: 50%;
     background-color: #111214;
     border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.2rem;
+    justify-items: center;
+    align-items: center;
+    overflow-y: scroll;
 }
 
+.news-grid::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.news-grid::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 1rem;
+}
+
+.news-grid::-webkit-scrollbar-track {
+    background-color: #111214;
+}
+
+.news-item {
+    width: 100%;
+    height: 100%;
+    min-height: 15rem;
+    background-color: #111214;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.news-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1rem;
+    opacity: 0.4;
+}
+.news-item h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1.6rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    border-radius: 0 0 1rem 1rem;
+}
 .my-blogs {
     width: clamp(20rem, 27cqi, 28%);
     height: 100%;

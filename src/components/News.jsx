@@ -2,6 +2,14 @@ import React from "react";
 import Weather from "./Weather";
 import Calender from "./Calender";
 import userImg from "../assets/profile-pic.png";
+import techImg from "../assets/tech.jpg";
+import sportsImg from "../assets/sports.jpg";
+import healthImg from "../assets/health.jpg";
+import scienceImg from "../assets/science.jpg";
+
+import entertainmentImg from "../assets/entertainment.jpg";
+import nationImg from "../assets/nation.jpg";
+
 import "./News.css";
 
 const News = () => {
@@ -64,12 +72,60 @@ const News = () => {
                 </div>
                 {/* News Section */}
                 <div className="news-section">
-                    <div className="headline">headline</div>
+                    <div className="headline">
+                        <img src={techImg} alt="tech news" />
+                        <h2 className="headline-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Eligendi nemo exercitationem quos.
+                            <i className="fa-regular fa-bookmark bookmark"></i>
+                        </h2>
+                    </div>
                     <div className="news-grid">
-                        <div className="news-item">news item</div>
-                        <div className="news-item">news item</div>
-                        <div className="news-item">news item</div>
-                        <div className="news-item">news item</div>
+                        <div className="news-item">
+                            <img src={techImg} alt="tech news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
+                        <div className="news-item">
+                            <img src={sportsImg} alt="sports news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
+
+                        <div className="news-item">
+                            <img src={healthImg} alt="health news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
+
+                        <div className="news-item">
+                            <img src={techImg} alt="tech news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
+                        <div className="news-item">
+                            <img src={sportsImg} alt="sports news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
+
+                        <div className="news-item">
+                            <img src={healthImg} alt="health news" />
+                            <h3>
+                                Lorem ipsum dolor sit
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h3>
+                        </div>
                     </div>
                 </div>
                 {/* End of News Section */}
