@@ -1,14 +1,9 @@
-import React from "react";
 import Weather from "./Weather";
 import Calender from "./Calender";
 import userImg from "../assets/profile-pic.png";
 import techImg from "../assets/tech.jpg";
 import sportsImg from "../assets/sports.jpg";
 import healthImg from "../assets/health.jpg";
-import scienceImg from "../assets/science.jpg";
-
-import entertainmentImg from "../assets/entertainment.jpg";
-import nationImg from "../assets/nation.jpg";
 
 import "./News.css";
 
