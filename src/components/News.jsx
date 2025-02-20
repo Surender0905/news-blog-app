@@ -1,13 +1,55 @@
 import Weather from "./Weather";
 import Calender from "./Calender";
 import userImg from "../assets/profile-pic.png";
-import techImg from "../assets/tech.jpg";
-import sportsImg from "../assets/sports.jpg";
-import healthImg from "../assets/health.jpg";
+import noImage from "../assets/no-img.png";
 
+import axios from "axios";
 import "./News.css";
+import { useState, useEffect } from "react";
+
+const categories = [
+    "general",
+    "world",
+    "business",
+    "technology",
+    "science",
+    "health",
+    "sports",
+    "entertainment",
+    "nation",
+];
 
 const News = () => {
+    const [headline, setHeadline] = useState(null);
+    const [news, setNews] = useState([]);
+    const [category, setCategory] = useState("General");
+
+    //useEffect
+    useEffect(() => {
+        const fetchNews = async () => {
+            const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&apikey=9fe9166bf46b21105765f32f80498584`;
+            try {
+                const res = await axios.get(url);
+                const fetchedNews = res.data.articles;
+                console.log(fetchedNews);
+                fetchedNews.forEach((article) => {
+                    if (!article.image) {
+                        article.image = noImage;
+                    }
+                });
+                setHeadline(fetchedNews[0]);
+                setNews(fetchedNews.slice(1, 7));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchNews();
+    }, [category]);
+
+    const handleCategoryChange = (e, category) => {
+        e.preventDefault();
+        setCategory(category);
+    };
     return (
         <div className="news">
             <header className="news-header">
@@ -30,34 +72,19 @@ const News = () => {
                     <div className="categories">
                         <h1 className="nav-heading">Categories</h1>
                         <div className="nav-links">
-                            <a href="#" className="nav-link">
-                                General
-                            </a>
-                            <a href="#" className="nav-link">
-                                World
-                            </a>
-                            <a href="#" className="nav-link">
-                                Business
-                            </a>
-                            <a href="#" className="nav-link">
-                                Sports
-                            </a>
-                            <a href="#" className="nav-link">
-                                Health
-                            </a>
-                            <a href="#" className="nav-link">
-                                Science
-                            </a>
-                            <a href="#" className="nav-link">
-                                Technology
-                            </a>
-                            <a href="#" className="nav-link">
-                                Entertainment
-                            </a>
+                            {categories.map((category, index) => (
+                                <a
+                                    key={index}
+                                    href="#"
+                                    className="nav-link"
+                                    onClick={(e) =>
+                                        handleCategoryChange(e, category)
+                                    }
+                                >
+                                    {category}
+                                </a>
+                            ))}
 
-                            <a href="#" className="nav-link">
-                                Nation
-                            </a>
                             <a href="#" className="nav-link">
                                 Bookmarks{" "}
                                 <i className="fa-regular fa-bookmark"></i>
@@ -67,60 +94,33 @@ const News = () => {
                 </div>
                 {/* News Section */}
                 <div className="news-section">
-                    <div className="headline">
-                        <img src={techImg} alt="tech news" />
-                        <h2 className="headline-title">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Eligendi nemo exercitationem quos.
-                            <i className="fa-regular fa-bookmark bookmark"></i>
-                        </h2>
-                    </div>
+                    {headline && (
+                        <div className="headline">
+                            <img
+                                src={headline.image || noImage}
+                                alt={headline.title}
+                            />
+                            <h2 className="headline-title">
+                                {headline.title}
+                                <i className="fa-regular fa-bookmark bookmark"></i>
+                            </h2>
+                        </div>
+                    )}
+
                     <div className="news-grid">
-                        <div className="news-item">
-                            <img src={techImg} alt="tech news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
-                        <div className="news-item">
-                            <img src={sportsImg} alt="sports news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
-
-                        <div className="news-item">
-                            <img src={healthImg} alt="health news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
-
-                        <div className="news-item">
-                            <img src={techImg} alt="tech news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
-                        <div className="news-item">
-                            <img src={sportsImg} alt="sports news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
-
-                        <div className="news-item">
-                            <img src={healthImg} alt="health news" />
-                            <h3>
-                                Lorem ipsum dolor sit
-                                <i className="fa-regular fa-bookmark bookmark"></i>
-                            </h3>
-                        </div>
+                        {news &&
+                            news.map((article, index) => (
+                                <div key={index} className="news-item">
+                                    <img
+                                        src={article.image || noImage}
+                                        alt={article.title}
+                                    />
+                                    <h3>
+                                        {article.title}
+                                        <i className="fa-regular fa-bookmark bookmark"></i>
+                                    </h3>
+                                </div>
+                            ))}
                     </div>
                 </div>
                 {/* End of News Section */}

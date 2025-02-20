@@ -1,4 +1,4 @@
-import News from "./components/News";
+import News from "./components/news";
 
 function App() {
     return (
