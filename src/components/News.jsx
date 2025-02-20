@@ -6,6 +6,7 @@ import noImage from "../assets/no-img.png";
 import axios from "axios";
 import "./News.css";
 import { useState, useEffect } from "react";
+import NewsModal from "./NewsModal";
 
 const categories = [
     "general",
@@ -23,15 +24,24 @@ const News = () => {
     const [headline, setHeadline] = useState(null);
     const [news, setNews] = useState([]);
     const [category, setCategory] = useState("General");
+    const [search, setSearch] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const [showModal, setShowModal] = useState(false);
+    const [selectedArticle, setSelectedArticle] = useState(null);
 
     //useEffect
     useEffect(() => {
         const fetchNews = async () => {
-            const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&apikey=9fe9166bf46b21105765f32f80498584`;
+            let url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&apikey=9fe9166bf46b21105765f32f80498584`;
+
+            if (searchQuery) {
+                url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&apikey=9fe9166bf46b21105765f32f80498584`;
+            }
             try {
                 const res = await axios.get(url);
                 const fetchedNews = res.data.articles;
-                console.log(fetchedNews);
+
                 fetchedNews.forEach((article) => {
                     if (!article.image) {
                         article.image = noImage;
@@ -44,19 +54,36 @@ const News = () => {
             }
         };
         fetchNews();
-    }, [category]);
+    }, [category, searchQuery]);
 
     const handleCategoryChange = (e, category) => {
         e.preventDefault();
         setCategory(category);
     };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearchQuery(search);
+        setSearch("");
+    };
+
+    const handleArticleClick = (article) => {
+        setSelectedArticle(article);
+        setShowModal(true);
+    };
+    console.log(selectedArticle);
     return (
         <div className="news">
             <header className="news-header">
                 <h1 className="logo">News & Blogs</h1>
                 <div className="search-bar">
-                    <form action="">
-                        <input type="text" placeholder="Search News..." />
+                    <form onSubmit={handleSearch}>
+                        <input
+                            type="text"
+                            placeholder="Search News..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                         <button type="submit">
                             <i className="fas fa-search"></i>
                         </button>
@@ -95,7 +122,10 @@ const News = () => {
                 {/* News Section */}
                 <div className="news-section">
                     {headline && (
-                        <div className="headline">
+                        <div
+                            className="headline"
+                            onClick={() => handleArticleClick(headline)}
+                        >
                             <img
                                 src={headline.image || noImage}
                                 alt={headline.title}
@@ -110,7 +140,11 @@ const News = () => {
                     <div className="news-grid">
                         {news &&
                             news.map((article, index) => (
-                                <div key={index} className="news-item">
+                                <div
+                                    key={index}
+                                    className="news-item"
+                                    onClick={() => handleArticleClick(article)}
+                                >
                                     <img
                                         src={article.image || noImage}
                                         alt={article.title}
@@ -123,6 +157,13 @@ const News = () => {
                             ))}
                     </div>
                 </div>
+
+                {/* News Modal */}
+                <NewsModal
+                    show={showModal}
+                    article={selectedArticle}
+                    onClose={() => setShowModal(false)}
+                />
                 {/* End of News Section */}
 
                 {/* My Blogs */}

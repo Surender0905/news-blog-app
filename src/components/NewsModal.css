@@ -1,0 +1,80 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 60rem;
+    height: auto;
+    background-color: #111214;
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 5rem 4rem rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal-img {
+    width: 100%;
+
+    height: auto;
+    max-height: 30rem;
+    object-fit: cover;
+    border-radius: 1rem;
+    opacity: 0.5;
+}
+
+.modal-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    margin-top: 2rem;
+}
+
+.modal-source,
+.modal-date {
+    font-family: "Comfortaa", cursive;
+    font-size: 1.4rem;
+    color: #bbb;
+    margin-top: 1rem;
+}
+
+.modal-text {
+    font-size: 1.6rem;
+    color: #ddd;
+    margin-top: 2rem;
+    line-height: 1.7rem;
+}
+
+.modal-link {
+    width: 15rem;
+    display: inline-block;
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    margin-top: 2rem;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    font-size: 1.6rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.modal-link:active {
+    transform: translateY(0.1rem);
+}
