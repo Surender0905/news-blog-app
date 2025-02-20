@@ -6,7 +6,17 @@ import "./News.css";
 const News = () => {
     return (
         <div className="news">
-            <header className="news-header">header</header>
+            <header className="news-header">
+                <h1 className="logo">News & Blogs</h1>
+                <div className="search-bar">
+                    <form action="">
+                        <input type="text" placeholder="Search News..." />
+                        <button type="submit">
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </header>
             <div className="news-content">
                 <div className="navbar">
                     <div className="user">user</div>
