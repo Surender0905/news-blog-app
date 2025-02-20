@@ -7,6 +7,7 @@ import axios from "axios";
 import "./News.css";
 import { useState, useEffect } from "react";
 import NewsModal from "./NewsModal";
+import Bookmarks from "./Bookmarks";
 
 const categories = [
     "general",
@@ -30,6 +31,9 @@ const News = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedArticle, setSelectedArticle] = useState(null);
 
+    const [bookmarks, setBookmarks] = useState([]);
+    const [showBookmarks, setShowBookmarks] = useState(false);
+
     //useEffect
     useEffect(() => {
         const fetchNews = async () => {
@@ -49,6 +53,14 @@ const News = () => {
                 });
                 setHeadline(fetchedNews[0]);
                 setNews(fetchedNews.slice(1, 7));
+
+                const storedBookmarks = JSON.parse(
+                    localStorage.getItem("bookmarks") || [],
+                );
+
+                if (storedBookmarks) {
+                    setBookmarks(storedBookmarks);
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -71,7 +83,20 @@ const News = () => {
         setSelectedArticle(article);
         setShowModal(true);
     };
-    console.log(selectedArticle);
+
+    const handleBookmarkClick = (article) => {
+        setBookmarks((prev) => {
+            const updatedBookmarks = prev.find(
+                (bookmark) => bookmark.title === article.title,
+            )
+                ? prev.filter((bookmark) => bookmark.title !== article.title)
+                : [...prev, article];
+
+            //save to local storage
+            localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+            return updatedBookmarks;
+        });
+    };
     return (
         <div className="news">
             <header className="news-header">
@@ -112,9 +137,13 @@ const News = () => {
                                 </a>
                             ))}
 
-                            <a href="#" className="nav-link">
+                            <a
+                                href="#"
+                                className="nav-link"
+                                onClick={() => setShowBookmarks(true)}
+                            >
                                 Bookmarks{" "}
-                                <i className="fa-regular fa-bookmark"></i>
+                                <i className="fa-solid fa-bookmark"></i>
                             </a>
                         </div>
                     </div>
@@ -132,7 +161,21 @@ const News = () => {
                             />
                             <h2 className="headline-title">
                                 {headline.title}
-                                <i className="fa-regular fa-bookmark bookmark"></i>
+                                <i
+                                    className={`${
+                                        bookmarks.some(
+                                            (bookmark) =>
+                                                bookmark.title ===
+                                                headline.title,
+                                        )
+                                            ? "fa-solid"
+                                            : "fa-regular"
+                                    } fa-bookmark bookmark`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleBookmarkClick(headline);
+                                    }}
+                                ></i>
                             </h2>
                         </div>
                     )}
@@ -151,7 +194,21 @@ const News = () => {
                                     />
                                     <h3>
                                         {article.title}
-                                        <i className="fa-regular fa-bookmark bookmark"></i>
+                                        <i
+                                            className={`${
+                                                bookmarks.some(
+                                                    (bookmark) =>
+                                                        bookmark.title ===
+                                                        article.title,
+                                                )
+                                                    ? "fa-solid"
+                                                    : "fa-regular"
+                                            } fa-bookmark bookmark`}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleBookmarkClick(article);
+                                            }}
+                                        ></i>
                                     </h3>
                                 </div>
                             ))}
@@ -165,6 +222,14 @@ const News = () => {
                     onClose={() => setShowModal(false)}
                 />
                 {/* End of News Section */}
+
+                <Bookmarks
+                    show={showBookmarks}
+                    bookmarks={bookmarks}
+                    onClose={() => setShowBookmarks(false)}
+                    onSelectArticle={handleArticleClick}
+                    onDeletedBookmark={handleBookmarkClick}
+                />
 
                 {/* My Blogs */}
                 <div className="my-blogs">
