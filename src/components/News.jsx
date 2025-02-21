@@ -248,7 +248,19 @@ const News = () => {
             </div>
             {/* Footer */}
             <footer className="news-footer">
-                <div className="footer-content">footer content</div>
+                <p>
+                    <span>News & Blogs App </span>
+                </p>
+                <p>
+                    Copyright &copy; 2025. All rights reserved. By{" "}
+                    <a
+                        href="https://github.com/Surender0905"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Surender Pratap Singh
+                    </a>
+                </p>
             </footer>
             {/* End of Footer */}
         </div>

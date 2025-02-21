@@ -272,3 +272,39 @@
     background-color: #111214;
     border-radius: 0 0 1rem 1rem;
 }
+
+.news-footer {
+    width: 100%;
+    min-height: 5rem;
+    background-color: #111214;
+    border-radius: 0 0 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+}
+
+.news-footer p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #bbb;
+}
+
+.news-footer p span {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2rem;
+}
+
+.news-footer p a {
+    color: #ddd;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+}
+
+.news-footer p a:hover {
+    text-decoration: underline;
+    color: #b88efc;
+}
