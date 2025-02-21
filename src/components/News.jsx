@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Weather from "./Weather";
 import Calender from "./Calender";
 import userImg from "../assets/profile-pic.png";
 import noImage from "../assets/no-img.png";
-
+import blogImg1 from "../assets/blog1.jpg";
 import axios from "axios";
 import "./News.css";
 import { useState, useEffect } from "react";
@@ -21,7 +22,7 @@ const categories = [
     "nation",
 ];
 
-const News = () => {
+const News = ({ onShowBlogs }) => {
     const [headline, setHeadline] = useState(null);
     const [news, setNews] = useState([]);
     const [category, setCategory] = useState("General");
@@ -117,7 +118,11 @@ const News = () => {
             </header>
             <div className="news-content">
                 <div className="navbar">
-                    <div className="user">
+                    <div
+                        className="user"
+                        onClick={onShowBlogs}
+                        title="Create a blog"
+                    >
                         <img src={userImg} alt="profile pic" />
                         <p>Surender&#39;s Blog</p>
                     </div>
@@ -233,10 +238,34 @@ const News = () => {
 
                 {/* My Blogs */}
                 <div className="my-blogs">
-                    <div className="blog">blog</div>
-                    <div className="blog">blog</div>
-                    <div className="blog">blog</div>
-                    <div className="blog">blog</div>
+                    <h1 className="my-blogs-heading">My Blogs</h1>
+                    <div className="blog-posts">
+                        <div className="blog-post">
+                            <img src={blogImg1} alt="Post img" />
+                            <h3>Lorem ipsum dolor sit amet.</h3>
+                            <div className="post-buttons">
+                                <button type="button" className="edit-post">
+                                    <i className="fa-regular fa-pen-to-square"></i>
+                                </button>
+                                <button type="button" className="delete-post">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="blog-post">
+                            <img src={blogImg1} alt="Post img" />
+                            <h3>Lorem ipsum dolor sit amet.</h3>
+                            <div className="post-buttons">
+                                <button type="button" className="edit-post">
+                                    <i className="fa-regular fa-pen-to-square"></i>
+                                </button>
+                                <button type="button" className="delete-post">
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* End of My Blogs */}
